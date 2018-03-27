@@ -4,9 +4,14 @@
     
     Container class that holds things.
     Author: Jeremy Stintzcum
-    Date Modified: 02/04/18
+    Date Modified: 03/27/18
 """
-from item import Item
+
+#Macros
+CLOSED = 1
+TOO_HEAVY = 2
+TOO_LARGE = 3
+NOT_IN_CONTAINER = 1
 
 class Container:
     """ Container class
@@ -16,46 +21,45 @@ class Container:
         name: String containing identifier
         closable: Bool representing latch/zipper
     """
-    def __init__(self, mcw, vol, name = "Container", closable = False):
-        self.Name = name
-        self.MaxWeight = mcw
-        self.MaxVolume = vol
-        self.Items = []
-        self.CurrWeight = 0.0
-        self.CurrVol = 0.0
-        self.Closable = closable
-        self.Closed = False
+    def __init__(self, mw, vol, name = "Bucket", closable = False):
+        self._name = name
+        self._maxWeight = mw
+        self._maxVol = vol
+        self._items = []
+        self._cWeight = 0.0
+        self._cVol = 0.0
+        self._closable = closable
+        self._closed = False
+
+    def GetList(self):
+        return self._items
+
+    def AddItem(self, it):
+        """ Add an item to the container if it fits
         
-    def addItem(self, item):
-        """ Adds an item to the container
+            it: Item instnace to add
+        """
+        if (self._cWeight + it.GetWeight()) > self._maxWeight:
+            return TOO_HEAVY
+        if (self._cVol + it.GetVol()) > self._maxVol:
+            return TOO_LARGE
+        if self._closed is True:
+            return CLOSED
+        else:
+            self._items.append(it.Clone())
+            self._cWeight += it.GetWeight()
+            self._cVol += it.GetVol()
+            it.SetVis(False)
+            return
+
+    def RemoveItem(self, name):
+        """ Removes an item from the container if it exists
             
-            item: item class to be added
+            name: Name of the item to be removed
         """
-        if (self.CurrWeight + item.Weight) > self.MaxWeight:
-            return 1 #Too heavy
-        if (self.CurrVol + item.Volume) > self.MaxVolume:
-            return 2 #Won't fit
-        if self.Closed is True:
-            return 3 #Container closed
-        else:
-            self.Items.append(item)
-            self.CurrWeight += item.Weight
-            self.CurrVol += item.Volume
-            item.InContainer = True
-            return 0 #Succesful add
-        
-    def listItems(self):
-        """Returns list of items"""
-        return self.Items
-        
-    def delItem(self, item):
-        """ Removes item 
-        
-            item: item class to be removed
-        """
-        if item in self.Items:
-            self.Items.remove(item)
-            item.InContainer = False
-            return item
-        else:
-            return 1 #No item in list
+        for i in range(len(self._items)):
+            if self._items[i].GetName() is name:
+                self._cWeight = self._cWeight - self._items[i].GetWeight()
+                self._cVol = self._cVol - self._items[i].GetVol()
+                return self._items.pop(i)
+        return NOT_IN_CONTAINER

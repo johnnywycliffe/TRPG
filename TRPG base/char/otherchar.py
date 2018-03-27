@@ -4,7 +4,7 @@
     
     Class representing one character's knowledge of another.
     Author: Jeremy Stintzcum
-    Date Modified: 03/23/18
+    Date Modified: 03/24/18
 """
 from random import random as rand
 import tags, acts

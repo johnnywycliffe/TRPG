@@ -4,7 +4,7 @@
     
     Class to allow for determination of like and love
     Author: Jeremy Stintzcum
-    Date Modified: 03/22/18
+    Date Modified: 03/24/18
 """
 import tags, otherchar
 

@@ -4,12 +4,12 @@
     
     acts container
     Author: Jeremy Stintzcum
-    Date Modified: 03/23/18
+    Date Modified: 03/24/18
 """
 from uuid import uuid4
 
 class Act:
-    """ Deed are events that happen. Who was involved, what happened, stuff like
+    """ Acts are events that happen. Who was involved, what happened, stuff like
         that is stored in this class 
         
         eventName: name of event

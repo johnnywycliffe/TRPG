@@ -1,15 +1,43 @@
 #!/usr/bin/env python
 
-""" container.py
+""" item.py
     
-    Container class that holds things.
+    Base item class
     Author: Jeremy Stintzcum
-    Date Modified: 02/04/18
+    Date Modified: 03/27/18
 """
 
 class Item:
     def __init__(self, name, wei, vol):
-        self.Name = name
-        self.Weight = wei
-        self.Volume = vol
-        self.InContainer = False
+        self._name = name
+        self._weight = float(wei)
+        self._volume = float(vol)
+        self._visible = True
+
+    def Clone(self):
+        """ Create a copy of this item for use """
+        return Item(self._name,self._weight,self._volume)
+
+    def GetName(self):
+        return self._name
+
+    def GetWeight(self):
+        return self._weight
+
+    def GetVol(self):
+        return self._volume
+
+    def GetVisable(self):
+        return self._visible
+
+    def SetName(self, val):
+        self._name = val
+
+    def SetWeight(self, val):
+        self._weight = val
+
+    def SetVol(self, val):
+        self._volume = val
+
+    def SetVis(self, val):
+        self._visible = val

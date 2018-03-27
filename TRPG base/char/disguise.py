@@ -4,7 +4,7 @@
     
     Disguise class for containing information related to disguises
     Author: Jeremy Stintzcum
-    Date Modified: 03/23/18
+    Date Modified: 03/24/18
 """
 from uuid import uuid4
 import tags

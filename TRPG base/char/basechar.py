@@ -4,7 +4,7 @@
     
     Top level character class
     Author: Jeremy Stintzcum
-    Date Modified: 03/17/18
+    Date Modified: 03/24/18
 """
 import tags, disguise
 

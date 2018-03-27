@@ -4,7 +4,7 @@
     
     Tags system, used for identifying traits in characters
     Author: Jeremy Stintzcum
-    Date Modified: 03/22/18
+    Date Modified: 03/24/18
 """
 
 #Settings
